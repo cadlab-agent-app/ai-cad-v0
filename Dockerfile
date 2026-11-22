@@ -4,8 +4,8 @@ RUN useradd -m -u 1000 user
 USER user
 ENV PATH=/home/user/.local/bin:$PATH CAD_OUTPUT_DIR=/tmp/cad-output
 WORKDIR /home/user
-COPY --chown=user app.zip .
-RUN unzip -q app.zip && rm app.zip
+COPY --chown=user payload.part* ./
+RUN cat payload.part* | base64 -d > app.zip && unzip -q app.zip && rm -f app.zip payload.part*
 WORKDIR /home/user/ai-cad-v0
 RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 CMD ["sh","-c","python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000}"]
