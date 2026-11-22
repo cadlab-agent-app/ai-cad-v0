@@ -1,11 +1,10 @@
 FROM python:3.10-slim
-RUN apt-get update && apt-get install -y --no-install-recommends unzip libgl1 libglu1-mesa libxrender1 libxext6 libsm6 libx11-6 libgomp1 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends libgl1 libglu1-mesa libxrender1 libxext6 libsm6 libx11-6 libgomp1 && rm -rf /var/lib/apt/lists/*
 RUN useradd -m -u 1000 user
 USER user
 ENV PATH=/home/user/.local/bin:$PATH CAD_OUTPUT_DIR=/tmp/cad-output
-WORKDIR /home/user
-COPY --chown=user payload.part* ./
-RUN cat payload.part* | base64 -d > app.zip && unzip -q app.zip && rm -f app.zip payload.part*
-WORKDIR /home/user/ai-cad-v0
+WORKDIR /home/user/app
+COPY --chown=user requirements.txt requirements.lock.txt ./
 RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
-CMD ["sh","-c","python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000}"]
+COPY --chown=user . .
+CMD ["sh","-c","python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860}"]

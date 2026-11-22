@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mohamed CAD | Sketch to model</title>
+<link rel="stylesheet" href="/static/style.css">
+<script type="importmap">{"imports":{"three":"/static/vendor/three.module.js"}}</script>
+</head><body>
+<header><div class="brand"><span class="brand-icon">M</span> MOHAMED <span class="muted">/ CAD LAB</span></div>
+<div class="head-right"><div class="lang" role="group" aria-label="Language"><button type="button" id="lang-en" data-lang="en">EN</button><button type="button" id="lang-ar" data-lang="ar">العربية</button></div><span class="pill">v1.0</span></div></header>
+<main>
+<section class="intro"><p class="eyebrow" data-i18n="eyebrow"></p><h1 data-i18n="title"></h1><p class="intro-note" data-i18n="intro"></p></section>
+<div class="workspace">
+<section class="panel controls"><div class="section-heading"><span class="number">01</span><h2 data-i18n="define"></h2></div>
+<div class="tabs" role="tablist"><button type="button" role="tab" id="tab-sketch" class="tab" data-i18n="tabSketch"></button><button type="button" role="tab" id="tab-manual" class="tab" data-i18n="tabManual"></button></div>
+<div id="sketch-box">
+<label class="drop" for="sketch" id="drop"><span class="drop-icon">📷</span><strong data-i18n="dropTitle"></strong><span class="note" data-i18n="dropHint"></span></label>
+<input type="file" id="sketch" accept="image/png,image/jpeg,image/webp" hidden>
+<div id="sketch-chosen" hidden><img id="sketch-thumb" alt=""><div><p id="sketch-name" class="note"></p><button type="button" id="sketch-clear" class="text-button" data-i18n="clear"></button></div></div>
+<button type="button" id="analyze" class="secondary" data-i18n="analyze" disabled></button>
+<p id="ai-status" class="note"></p>
+<p class="note" data-i18n="privacy"></p>
+</div>
+<div id="review" hidden>
+<div id="banner" class="banner" hidden><strong data-i18n="reviewTitle"></strong><p id="banner-text" class="note"></p><p id="banner-notes" class="note"></p></div>
+<label for="part-type" data-i18n="partType"></label><select id="part-type" disabled></select>
+<form id="dimensions-form"><div id="fields"></div>
+<label class="check" id="confirm-row" hidden><input type="checkbox" id="confirm-check"> <span data-i18n="confirmCheck"></span></label>
+<button id="generate" type="submit" disabled><span id="generate-text"></span> <span>↗</span></button></form>
+<p class="note" data-i18n="mmNote"></p>
+</div>
+</section>
+<section class="panel preview-panel"><div class="section-heading"><span class="number">02</span><h2 data-i18n="inspect"></h2><span class="live-dot"></span></div>
+<div id="compare" class="compare"><figure id="sketch-card" class="sketch-card" hidden><figcaption data-i18n="yourSketch"></figcaption><img id="sketch-big" alt=""></figure>
+<div class="viewer-col"><div id="viewer"><div id="empty-state"><div class="wire-icon">◇</div><h3 data-i18n="emptyTitle"></h3><p data-i18n="emptyText"></p></div><span class="viewer-label"><span data-i18n="model3d"></span> <span>· mm</span></span></div>
+<div class="viewer-footer"><span data-i18n="orbit"></span><button id="reset-view" class="text-button" type="button" data-i18n="resetView"></button></div></div></div>
+<div id="status" role="status" aria-live="polite"></div>
+<div id="result" hidden><div id="metrics"></div><div class="downloads"><a id="step-link" class="download-link" data-i18n="dlStep"></a><a id="stl-link" class="download-link outline" data-i18n="dlStl"></a></div><p class="note" data-i18n="disclaimer"></p></div>
+</section></div>
+<footer><span data-i18n="footA"></span><p data-i18n="footB"></p></footer>
+</main><script type="module" src="/static/app.js"></script></body></html>

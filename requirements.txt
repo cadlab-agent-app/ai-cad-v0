@@ -1,0 +1,2 @@
+# Exact dependency snapshot tested on Linux x86_64 / Python 3.10.12.
+-r requirements.lock.txt
